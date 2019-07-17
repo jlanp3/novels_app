@@ -1,0 +1,10 @@
+<h1><%= @novel.name %></h1>
+<p align="center">List of Chapters</p>
+
+<ul>
+	<% @chapters.each do |chapter| %>
+		<li><%= chapter.chap %> - <%= chapter.name %></li>
+	<% end %>
+</ul>
+
+<%= user_signed_in? && current_user.admin ? (link_to "New Chapter", root_path) : "" %>

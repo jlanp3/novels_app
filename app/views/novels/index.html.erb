@@ -1,0 +1,14 @@
+<h1>Index novels</h1>
+
+<ul>
+	<% @novels.each do |novel| %>
+		<li><%= link_to novel.name, novel_path(novel) %></li>
+	<% end %>
+</ul>
+<% if user_signed_in? && current_user.admin %>
+	<p>Admin</p>
+<% end %>
+ <br>
+<%= user_signed_in? ? (link_to "logout", destroy_user_session_path, method: :delete) : (link_to "login", new_user_session_path)  %>
+
+
