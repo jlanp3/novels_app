@@ -1,6 +1,7 @@
 class NovelsController < ApplicationController
 	skip_before_action :authenticate_user!, only: [:index, :show]
 	before_action :find_chap
+
 	def index
 		@novels = Novel.all
 		@chapters = Chapter.all
@@ -37,7 +38,9 @@ class NovelsController < ApplicationController
 	end
 
 	def destroy
-
+		@novel = Novel.find(params[:id])
+		@novel.destroy
+		redirect_to root_path
 	end
 
 	private

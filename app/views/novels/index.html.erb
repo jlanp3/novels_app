@@ -2,13 +2,16 @@
 
 <ul>
 	<% @novels.each do |novel| %>
-		<li><%= link_to novel.name, novel_path(novel) %></li>
+		<li>
+			<%= link_to novel.name, novel_path(novel) %>
+			<% if user_signed_in? && current_user.admin %>
+				<%= link_to "Delete Novel", novel_path(novel), method: :delete, 
+				data: { confirm: "Are you sure?" }, :title => "Delete #{novel.name}" %>
+			<% end %>
+		</li>
 	<% end %>
 </ul>
-<% if user_signed_in? && current_user.admin %>
-	<p>Admin</p>
-<% end %>
- <br>
-<%= user_signed_in? ? (link_to "logout", destroy_user_session_path, method: :delete) : (link_to "login", new_user_session_path)  %>
+
+
 
 
