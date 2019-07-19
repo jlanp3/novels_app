@@ -9,9 +9,14 @@
   </head>
 
   <body>
-  	<nav>
-  		<%= render 'layouts/navbar' %>
-  	</nav>
-    <%= yield %>
+  	<div class="parallax-container">
+  		<div class="parallax"><%= image_tag("parallax1.jpg") %></div>
+		</div>
+		<div class="section white">
+			<div class="row container">
+				<%= render 'layouts/navbar' %>
+  				<%= yield %>
+  		</div>
+  	</div>
   </body>
 </html>

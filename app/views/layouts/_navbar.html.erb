@@ -1,8 +1,23 @@
-<div align="center">
-	<%= link_to 'Home', root_path %>
-	<% if user_signed_in? && current_user.admin %>
-		<%= "#{current_user.email} Admin" %>
-	<% elsif !user_signed_in? %>
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+	<% @novels.each do |novel| %>
+		<li class="txt2"><%= novel.name %></li>
 	<% end %>
-	<%= user_signed_in? ? (link_to "logout", destroy_user_session_path, method: :delete) : (link_to "login", new_user_session_path)  %>	
-</div>
+</ul>
+
+<nav class="transparent z-depth-0">
+  <div class="nav-wrapper center">
+  	<ul class="center txt-color">
+  		<li><%= link_to 'Home', root_path %></li>
+  		<li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Novels List<i class="material-icons right">arrow_drop_down</i></a></li>
+			<% if user_signed_in? && current_user.admin %>
+				<li><%= "Admin" %></li> 
+			<% elsif !user_signed_in? %>
+			<% end %>
+			<li>
+				<%= user_signed_in? ? (link_to "Logout", destroy_user_session_path, method: :delete) : (link_to "login", new_user_session_path) %>
+			</li>	
+  	</ul>
+  </div>
+</nav>
+

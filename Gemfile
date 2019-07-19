@@ -12,6 +12,7 @@ gem 'rails', '~> 5.1.7'
 gem 'hirb'
 gem 'devise'
 gem 'jquery-rails'
+gem 'materialize-sass', '~> 1.0.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

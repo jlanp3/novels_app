@@ -1,0 +1,23 @@
+@import "materialize";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+.parallax-container {
+  height: 250px;
+}
+
+.txt2 li {
+	color: teal;
+}
+
+.txt-color {
+	text-align: center;
+
+	a {
+		color: teal;
+		font-size: 1.5em;
+	}
+
+	a:hover {
+		color: grey;
+	} 
+}

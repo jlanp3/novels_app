@@ -13,4 +13,11 @@
 //= require rails-ujs
 //= require jquery
 //= require turbolinks
+//= require materialize
 //= require_tree .
+
+$(document).on('turbolinks:load', function(){
+	$('.parallax').parallax();
+	$(".dropdown-trigger").dropdown();
+	$('select').formSelect();
+})

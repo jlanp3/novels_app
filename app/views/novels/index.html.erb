@@ -1,17 +1,22 @@
-<h1>Index novels</h1>
-
 <ul>
-	<% @novels.each do |novel| %>
+	<% @chapters.order(id: :desc).each do |chapter| %>
 		<li>
-			<%= link_to novel.name, novel_path(novel) %>
+			<h2 class="header"><%= link_to chapter.name, chapter_path(chapter) %></h2>
+			<p class="grey-text text-darken-3 lighten-3"><%= truncate(chapter.content, :length => 400) %></p>
+			<small>Posted by: <%= chapter.user.admin? ? "Admin" : chapter.user.fname %></small>
+			<small><%= link_to chapter.novel.name, "#" %></small>
+			<small>Created: <%= chapter.created_at.strftime("%F") %></small>
+			<small>Posted: <%= time_ago_in_words(chapter.created_at) %></small>
 			<% if user_signed_in? && current_user.admin %>
-				<%= link_to "Delete Novel", novel_path(novel), method: :delete, 
-				data: { confirm: "Are you sure?" }, :title => "Delete #{novel.name}" %>
+				<%= link_to "Delete Novel", novels_path(params[chapter.novel.id]), method: :delete, 
+				data: { confirm: "Are you sure?" } %>
 			<% end %>
 		</li>
 	<% end %>
 </ul>
 
+
+			
 
 
 

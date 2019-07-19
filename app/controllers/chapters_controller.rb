@@ -30,6 +30,7 @@ class ChaptersController < ApplicationController
 	end
 
 	def show
+		@novels = Novel.all
 		@chapter = Chapter.find(params[:id])
 	end
 
