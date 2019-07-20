@@ -1,5 +1,27 @@
+@import "materialize/components/color-variables";
+$primary-color: color("teal", "lighten-2") !default;
+$secondary-color: color("pink", "base") !default;
+$primary-color-text: color("pink", "lighten-2") !default;
 @import "materialize";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+@font-face {
+  font-family: 'tangerine';
+  src:  url(https://fonts.gstatic.com/s/tangerine/v11/IurY6Y5j_oScZZow4VOxCZZM.woff2);
+	font-family: 'fugazone';
+	src: url(https://fonts.gstatic.com/s/fugazone/v9/rax_HiWKp9EAITukFsl8Axhf.woff2);
+}
+
+
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+main {
+	flex: 1 0 auto;
+}
 
 .parallax-container {
   height: 250px;
@@ -13,11 +35,31 @@
 	text-align: center;
 
 	a {
-		color: teal;
-		font-size: 1.5em;
+		font-weight: bold;
+		color: $primary-color;
 	}
 
 	a:hover {
-		color: grey;
+		color: $secondary-color;
 	} 
+}
+
+.pad-bot {
+	padding-bottom: 60px;
+}
+
+
+.txt {
+	font-family: fugazone;
+}
+
+.caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-family: fugazone;
 }

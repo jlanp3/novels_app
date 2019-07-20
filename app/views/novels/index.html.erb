@@ -1,10 +1,10 @@
-<ul>
+<ul class="collection">
 	<% @chapters.order(id: :desc).each do |chapter| %>
-		<li>
-			<h2 class="header"><%= link_to chapter.name, chapter_path(chapter) %></h2>
-			<p class="grey-text text-darken-3 lighten-3"><%= truncate(chapter.content, :length => 400) %></p>
+		<li class="collection-item">
+			<h4 class="header"><%= link_to chapter.name, chapter_path(chapter) %></h4>
+			<p class="grey-text text-darken-3 lighten-3 txt"><%= truncate(chapter.content, :length => 400) %></p>
 			<small>Posted by: <%= chapter.user.admin? ? "Admin" : chapter.user.fname %></small>
-			<small><%= link_to chapter.novel.name, "#" %></small>
+			<small><%= link_to chapter.novel.name, novel_path(chapter.novel.id) %></small>
 			<small>Created: <%= chapter.created_at.strftime("%F") %></small>
 			<small>Posted: <%= time_ago_in_words(chapter.created_at) %></small>
 			<% if user_signed_in? && current_user.admin %>

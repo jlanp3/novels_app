@@ -20,4 +20,5 @@ $(document).on('turbolinks:load', function(){
 	$('.parallax').parallax();
 	$(".dropdown-trigger").dropdown();
 	$('select').formSelect();
+	$('.sidenav').sidenav();
 })

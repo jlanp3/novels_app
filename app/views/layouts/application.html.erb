@@ -3,20 +3,30 @@
   <head>
     <title>NovelsApp</title>
     <%= csrf_meta_tags %>
-
+		<meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  	<div class="parallax-container">
-  		<div class="parallax"><%= image_tag("parallax1.jpg") %></div>
-		</div>
-		<div class="section white">
+  	<header>
+  		<div class="parallax-container">
+  			<div class="parallax"><%= image_tag("parallax1.jpg") %></div>
+  			  <div class="caption">
+            <h1><em>Novel App</em></h1>
+          </div>
+			</div>
+			<div class="section white">
 			<div class="row container">
 				<%= render 'layouts/navbar' %>
-  				<%= yield %>
-  		</div>
+			</div>
+  	</header>
+  	
+		<main class="container pad-bot">
+			<%= yield %>
+		</main>
+	
+  	<%= render 'layouts/footer' %>
   	</div>
   </body>
 </html>
