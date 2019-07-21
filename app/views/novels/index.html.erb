@@ -1,7 +1,7 @@
 <ul class="collection">
 	<% @chapters.order(id: :desc).each do |chapter| %>
 		<li class="collection-item">
-			<h4 class="header"><%= link_to chapter.name, chapter_path(chapter) %></h4>
+			<h4 class="header"><%= link_to chapter.name, novel_chapter_path(chapter.novel.id, chapter.id) %></h4>
 			<p class="grey-text text-darken-3 lighten-3 txt"><%= truncate(chapter.content, :length => 400) %></p>
 			<small>Posted by: <%= chapter.user.admin? ? "Admin" : chapter.user.fname %></small>
 			<small><%= link_to chapter.novel.name, novel_path(chapter.novel.id) %></small>

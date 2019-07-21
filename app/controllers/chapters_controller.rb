@@ -2,7 +2,7 @@ class ChaptersController < ApplicationController
 	skip_before_action :authenticate_user!, only: [:show]
 	
 	def new
-		@novel = Novel.all
+		@novel = Novel.find(params[:novel_id])
 		@chapter = Chapter.new
 	end
 
@@ -10,20 +10,22 @@ class ChaptersController < ApplicationController
 		@chapter = Chapter.new(chapter_params)
 		@chapter.user = current_user
 		if @chapter.save
-			redirect_to @chapter
+			redirect_to root_path
 		else
 			render 'new'
 		end
 	end
 
 	def edit
+		@novel = Novel.find(params[:novel_id])
 		@chapter = Chapter.find(params[:id])
 	end
 
 	def update
+		@novel = Novel.find(params[:novel_id])
 		@chapter = Chapter.find(params[:id])
 		if @chapter.update(chapter_params)
-			redirect_to @chapter
+			redirect_to root_path
 		else
 			render 'edit'
 		end

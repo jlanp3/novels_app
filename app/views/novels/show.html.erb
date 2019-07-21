@@ -4,14 +4,14 @@
 <ul>
 	<% @chapters.each do |chapter| %>
 		<li>
-			<%= link_to "#{chapter.chap} - #{chapter.name}", chapter_path(chapter) %>
+			<%= link_to "#{chapter.chap} - #{chapter.name}", novel_chapter_path(chapter.novel.id, chapter.id) %>
 			<% if user_signed_in? && current_user.admin %>
- 				<%= link_to "Delete Chapter", chapter_path(chapter), method: :delete, data: { confirm: "Are you sure you wan to delete #{chapter.name}"} %>
+ 				<%= link_to "Delete Chapter", novel_chapter_path(chapter.novel.id, chapter.id), method: :delete, data: { confirm: "Are you sure you wan to delete #{chapter.name}"} %>
 			<% end %>
 		</li>
 	<% end %>
 </ul>
 
 <% if user_signed_in? && current_user.admin %>
- <%= link_to "New chapter", new_chapter_path %>
+ <%= link_to "New chapter", new_novel_chapter_path(@novel) %>
 <% end %>
