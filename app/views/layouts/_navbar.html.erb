@@ -1,5 +1,5 @@
 <!-- Dropdown Structure -->
-<ul id="dropdown1" class="dropdown-content">
+<ul id="dropdown1" class="dropdown-content purple">
 	<% @novels.each do |novel| %>
 		<li class="txt2"><%= link_to novel.name, novel_path(novel.id) %></li>
 	<% end %>
