@@ -7,10 +7,12 @@ class ChaptersController < ApplicationController
 	end
 
 	def create
+		@user = User.all
+		@novel = Novel.find(params[:novel_id])
 		@chapter = Chapter.new(chapter_params)
 		@chapter.user = current_user
 		if @chapter.save
-			redirect_to root_path
+			redirect_to novel_chapter_path(@novel, @chapter)
 		else
 			render 'new'
 		end
@@ -25,7 +27,7 @@ class ChaptersController < ApplicationController
 		@novel = Novel.find(params[:novel_id])
 		@chapter = Chapter.find(params[:id])
 		if @chapter.update(chapter_params)
-			redirect_to root_path
+			redirect_to novel_chapter_path(@novel, @chapter)
 		else
 			render 'edit'
 		end
@@ -37,9 +39,10 @@ class ChaptersController < ApplicationController
 	end
 
 	def destroy
+		@novel = Novel.find(params[:novel_id])
 		@chapter = Chapter.find(params[:id])
 		@chapter.destroy
-		redirect_to root_path
+		redirect_to novel_path(@novel.id)
 	end
 
 

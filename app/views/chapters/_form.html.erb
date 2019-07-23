@@ -5,7 +5,7 @@
 <% end %>
 
 <%= form_for [@novel, @chapter] do |f| %>
-	
+
 	<%= f.label 'Chapter' %> <br>
 	<%= f.text_field :chap %> <br>
 
@@ -14,10 +14,8 @@
 
 	<%= f.label :content %> <br>
 	<%= f.text_area :content, class: "txt-area" %> <br>
-	
-	<%= f.label 'Select Novel' %> <br>
-	<%= f.collection_select :novel_id, Novel.all, :id, :name, prompt: true %> <br>
 
+	<%= f.hidden_field(:novel_id, :value => @novel.id) %>
 
 	<%= @chapter.new_record? ? (f.button 'New Chapter') : (f.button 'Edit Chapter') %>
 
