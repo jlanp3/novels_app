@@ -1,4 +1,25 @@
 <h1><%= @chapter.novel.name %></h1>
 <h3><%= "#{@chapter.chap} - #{@chapter.name}" %></h3>
 <p><%= simple_format(@chapter.content) %></p>
-<%= link_to "Back", url_for(:back) %>
+
+<div class="row center">
+	<% if @chapter != @novel.chapters.min  %>
+		<%= link_to "<- Back", novel_chapter_path(@novel, @chapter.id - 1) %>
+	<% end %>
+
+	<% if @chapter != @novel.chapters.max %>
+		<%= link_to "Next ->", novel_chapter_path(@novel, @chapter.id + 1) %>
+	<% end %>
+</div>
+
+<p>There is <%= pluralize(@chapter.comments.count, "comment") %> for this chapter</p>
+
+<div class="row">
+	<div class="col s2"></div>
+	<div class="col s8 new_comment">
+		<%= render  'comments/form_comments' %>
+	</div>
+	<div class="col s2"></div>
+</div>
+
+<%= render 'comments' %>

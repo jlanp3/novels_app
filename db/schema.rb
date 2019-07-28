@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190717072837) do
+ActiveRecord::Schema.define(version: 20190723051846) do
 
   create_table "chapters", force: :cascade do |t|
     t.integer "chap"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 20190717072837) do
     t.integer "novel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "email"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "chapter_id"
   end
 
   create_table "novels", force: :cascade do |t|

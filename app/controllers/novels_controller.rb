@@ -1,6 +1,7 @@
 class NovelsController < ApplicationController
 	skip_before_action :authenticate_user!, only: [:index, :show]
-	before_action :find_chap
+	before_action :find_chap, only: [:index, :show]
+	before_action :set_novel, except: [:index, :new, :create]
 
 	def index
 		@novels = Novel.all
@@ -21,11 +22,10 @@ class NovelsController < ApplicationController
 	end
 
 	def edit
-		@novel = Novel.find(params[:id])
+
 	end
 
 	def update
-		@novel = Novel.find(params[:id])
 		if @novel.update(novel_params)
 			redirect_to @novel
 		else
@@ -35,11 +35,9 @@ class NovelsController < ApplicationController
 
 	def show
 		@novels = Novel.all
-		@novel = Novel.find(params[:id])
 	end
 
 	def destroy
-		@novel = Novel.find(params[:id])
 		@novel.destroy
 		redirect_to root_path
 	end
@@ -48,6 +46,10 @@ class NovelsController < ApplicationController
 
 	def novel_params
 		params.require(:novel).permit(:name)
+	end
+
+	def set_novel
+		@novel = Novel.find(params[:id])
 	end
 
 	def find_chap

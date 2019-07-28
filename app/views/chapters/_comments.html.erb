@@ -1,0 +1,14 @@
+<div class="row">
+	<div class="col s12">
+		<ul class="collection">
+			<% @chapter.comments.order('id asc').each do |comment| %>
+				<li class="collection-item">
+					<h5><%= comment.email %></h5>  <br>
+				 	<span><em><%= comment.content %></em></span> <br>
+				 	<small><%= time_ago_in_words(comment.created_at) %></small>
+				 	<small><%= link_to 'Edit', edit_novel_chapter_comment_path(@novel, @chapter, comment) %></small>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>

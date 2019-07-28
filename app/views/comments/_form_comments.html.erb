@@ -1,0 +1,13 @@
+<%= form_for [@novel, @chapter, @comment] do |f| %>
+
+	<%= f.hidden_field(:chapter_id, :value => @chapter.id) %>
+
+	<%= f.label :email %>
+	<%= f.email_field :email %>
+
+	<%= f.label :content %>
+	<%= f.text_area :content, class: "materialize-textarea" %><br>
+
+	<%= f.button "New Comment", class: "waves-effect waves-light right btn pad-top" %>
+
+<% end %> 

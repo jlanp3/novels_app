@@ -7,10 +7,6 @@
 			<small><%= link_to chapter.novel.name, novel_path(chapter.novel.id) %></small>
 			<small>Created: <%= chapter.created_at.strftime("%F") %></small>
 			<small>Posted: <%= time_ago_in_words(chapter.created_at) %></small>
-			<% if user_signed_in? && current_user.admin %>
-				<%= link_to "Delete Novel", novels_path(params[chapter.novel.id]), method: :delete, 
-				data: { confirm: "Are you sure?" } %>
-			<% end %>
 		</li>
 	<% end %>
 </ul>

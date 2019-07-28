@@ -9,6 +9,6 @@
 	<%= f.label :name %>
 	<%= f.text_field :name  %>
 
-	<%= @novel.new_record? ? (f.submit) : (f.submit 'Edit Name') %>
+	<%= @novel.new_record? ? (f.button "New Novel", class: "waves-effect waves-light btn right") : (f.submit 'Edit Name', class: "waves-effect waves-light btn right") %>
 
 <% end %>

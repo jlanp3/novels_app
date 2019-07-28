@@ -1,14 +1,14 @@
 class ChaptersController < ApplicationController
 	skip_before_action :authenticate_user!, only: [:show]
+	before_action :set_novel
+	before_action :set_chapter, except: [:new, :create]
 	
 	def new
-		@novel = Novel.find(params[:novel_id])
 		@chapter = Chapter.new
 	end
 
 	def create
 		@user = User.all
-		@novel = Novel.find(params[:novel_id])
 		@chapter = Chapter.new(chapter_params)
 		@chapter.user = current_user
 		if @chapter.save
@@ -19,13 +19,10 @@ class ChaptersController < ApplicationController
 	end
 
 	def edit
-		@novel = Novel.find(params[:novel_id])
-		@chapter = Chapter.find(params[:id])
+
 	end
 
 	def update
-		@novel = Novel.find(params[:novel_id])
-		@chapter = Chapter.find(params[:id])
 		if @chapter.update(chapter_params)
 			redirect_to novel_chapter_path(@novel, @chapter)
 		else
@@ -34,19 +31,30 @@ class ChaptersController < ApplicationController
 	end
 
 	def show
-		@novels = Novel.all
-		@chapter = Chapter.find(params[:id])
+		@chapters = Chapter.all
+		@comment = Comment.new
 	end
 
 	def destroy
-		@novel = Novel.find(params[:novel_id])
-		@chapter = Chapter.find(params[:id])
 		@chapter.destroy
 		redirect_to novel_path(@novel.id)
 	end
 
+	def form_comments
+		 respond_to do |format|
+      format.js  { render partial: 'comments/form_comments' }
+     end		
+	end
 
 	private
+
+	def set_novel
+		@novel = Novel.find(params[:novel_id])
+	end
+
+	def set_chapter
+		@chapter = Chapter.find(params[:id])
+	end
 
 	def chapter_params
 		params.require(:chapter).permit(:chap, :name, :content, :user_id, :novel_id)
